@@ -6,7 +6,7 @@ Kevin Dano provided outstanding research assistance and contributed very substan
 ## Code organization
 
 Our project is organized as a series of tasks.
-The main project directory contains 48 folders that represent 48 tasks.
+The main project directory contains 46 folders that represent 46 tasks.
 Each task folder contains three folders: `input`, `code`, `output`.
 A task's output is used as an input by one or more downstream tasks.
 [This large graph](tasks_flow_graph.png) depicts the input-output relationships between tasks.
@@ -31,6 +31,7 @@ Please follow the instructions for [Running Julia from the Terminal](https://en.
 
 1. Download (or clone) this repository by clicking the green `Clone or download` button above.
 Uncompress the ZIP file into a working directory on your cluster or local machine.
+Uncompress the two ZIP files within the `initialdata/input` folder.
 2. From the Unix/Linux/MacOSX command line, navigate to the working directory and configure the project based on whether you will be running the code using the [Slurm workload manager](https://slurm.schedmd.com/) in a computing cluster environment or locally:
 * If you are using Slurm, type `bash slurm_configuration.sh` and enter the name of the computing partition to which the batch jobs should be submitted.
 * If you want to run code locally, type `bash local_configuration.sh` to impose the local configuration. The script will ask you to specify the number of CPUs available.
