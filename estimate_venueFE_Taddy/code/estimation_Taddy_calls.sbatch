@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#SBATCH --job-name=estimation_Taddy
+#SBATCH --output=slurmlogs/estimation_Taddy_job_%A_%a.out
+#SBATCH --error=slurmlogs/estimation_Taddy_job_%A_%a.err
+#SBATCH --array=1-3
+#SBATCH --partition=covert-dingel
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem-per-cpu=40g
+#SBATCH --mail-type=END,FAIL
+
+######################
+# Begin work section #
+######################
+
+list_race[1]=black
+list_race+=(asian whithisp)
+
+module load julia/0.6.2
+julia estimation_Taddy_calls.jl "${list_race[$SLURM_ARRAY_TASK_ID]}"
