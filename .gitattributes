@@ -1,0 +1,2 @@
+initialdata/input/tractpairs.dta filter=lfs diff=lfs merge=lfs -text
+initialdata/input/*.dta filter=lfs diff=lfs merge=lfs -text
