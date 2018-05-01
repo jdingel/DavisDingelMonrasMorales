@@ -15,7 +15,8 @@
 # Begin work section #
 ######################
 
-list_spec+=(lateadopt half fifth locainfo1 locainfo2 droploca disaggcuis carshare revchain 50 100)
+list_spec[1]=lateadopt
+list_spec+=(half fifth locainfo1 locainfo2 droploca disaggcuis carshare revchain 50 100)
 
 module load julia/0.6.2
 julia -p $SLURM_NTASKS dissimilarity_venueandtract_originmode_specification.jl sixom "${list_spec[$SLURM_ARRAY_TASK_ID]}"
