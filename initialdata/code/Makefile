@@ -1,41 +1,4 @@
-####################
-# INPUT
-####################
-
-stata_dta_inputs = \
-	../input/venues_alltripsstats.dta \
-	../input/trips_nonloc.dta \
-	../input/users_nonloc.dta \
-	../input/tracts.dta \
-	../input/dotmap_labels_bklyn.dta \
-	../input/dotmap_labels_harlem.dta \
-	../input/dotmap_zoomcuts.dta \
-	../input/YelpvsDOHMH_ZIPs.dta \
-	../input/geoid11_coords.dta \
-	../input/observationallyequivalentvenuesdata.dta \
-	../input/choiceset_all_posvis.dta \
-	../input/tractpairs.dta \
-	../input/users_est.dta \
-	../input/choiceset_droploca.dta \
-	../input/choiceset_homeonly.dta \
-	../input/users_homeonlysample.dta \
-	../input/trips_est.dta \
-	../input/venues_est.dta \
-	../input/choiceset_100.dta \
-	../input/choiceset_50.dta \
-	../input/choiceset_all.dta \
-	../input/traveltime_gain_new_line.dta \
-	../input/top_workplaces_5.dta 
-
-####################
-# OUTPUT
-####################
-
-folders_and_symlinks=create_folders_and_symlinks.txt
-
-####################
-# dta files
-####################
+##Definitions
 
 stata_dta_symlinks = \
 	../output/venues_alltripsstats.dta \
@@ -75,13 +38,14 @@ stata_dta_output = \
 # Work section
 #####################
 
-all: $(folders_and_symlinks) $(stata_dta_output)
+all: $(stata_dta_symlinks) $(stata_dta_output)
 
-$(folders_and_symlinks): create_folders_and_symlinks.sh
-	-bash 	create_folders_and_symlinks.sh
-	@echo "">create_folders_and_symlinks.txt
+../input/tractpairs.dta ../input/traveltime_gain_new_line.dta: ../input/%.dta : | ../input/%.dta.zip
+	unzip $< -d ../input
 
-$(stata_dta_output): $(stata_dta_inputs) $(stata_dta_inputs) tractpairs_characteristics.do tractpairs_characteristics.sbatch
+$(stata_dta_symlinks): ../output/%.dta: | ../input/%.dta
+
+$(stata_dta_output): tractpairs_characteristics.do tractpairs_characteristics.sbatch ../input/tracts.dta ../input/tractpairs.dta
 	sbatch -W tractpairs_characteristics.sbatch
 
 edit_sbatch: edit_sbatch.sh
