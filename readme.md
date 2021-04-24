@@ -58,7 +58,7 @@ The slow tasks are:
 
 ## Notes
 - It is best to replicate the project using the `make` approach described above.
-Nonetheless, it is also possible to produce the results task-by-task in the order depicted in the [flow chart](images/tasks_flow_graph.png).
+Nonetheless, it is also possible to produce the results task-by-task in the order depicted in the [flow chart](tasks_flow_graph.png).
 If all upstream tasks have been completed, you can complete a task by navigating to the task's `code` directory and typing `make`.
 - Given Julia's ongoing development (i.e., evolving syntax), it important to use [Julia version 0.6.2](https://julialang.org/downloads/) to run this code.
 - An internet connection is required so that scripts can install Julia packages and Stata programs.
